@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'drf_yasg',
+    'mptt',
+
     'profiles', 
     'wall',
     'comments',

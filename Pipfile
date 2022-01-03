@@ -19,6 +19,7 @@ gunicorn = "*"
 python-memcached = "*"
 pillow = "*"
 djoser = "*"
+django-mptt = "*"
 
 [dev-packages]
 
