@@ -1,0 +1,36 @@
+version: '3'
+    
+services:
+
+  db:
+    image: postgres:12
+    restart: always
+    environment:
+      - POSTGRES_DB=ayimdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+    volumes:
+      - "./postgres:/var/lib/postgresql/data"
+
+
+ # to run with runserver use the line below instead of gunicorn blog.wsgi ...
+ # python manage.py runserver 0.0.0.0:8000    
+ # gunicorn blog.wsgi:application # run wsgi via gunicorn
+  web:
+    build: ./
+    restart: always
+    command: python manage.py runserver 0.0.0.0:8000
+    # command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn blog.wsgi:application --bind 0.0.0.0:8000"
+    environment:
+      - DB_NAME=ayimdb
+      - DB_USER=postgres
+      - DB_PASSWORD=123
+      - DB_HOST=db
+      - DB_PORT=5432
+    volumes:
+      - ./:/ayimforum
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
