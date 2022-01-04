@@ -20,10 +20,13 @@ class Post(models.Model):
         return f'Posted by {self.user}'    
 
 
+    def comments_count(self):
+        return self.comments.count()
+
 class Comment(AbstractComment, MPTTModel):
     """ Comments to posts""" 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, related_name="commnets", on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE)
     parent = TreeForeignKey(
         "self",
         on_delete=models.SET_NULL,
