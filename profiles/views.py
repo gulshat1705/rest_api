@@ -11,7 +11,7 @@ class UserProfilePublicView(ModelViewSet):
 
 
 class UserProfileView(ModelViewSet):
-    """ Updateing Profile """
+    """ Output user's profile or Updateing Profile """
     serializer_class = GetUserProfileSerializer
     permission_classes = [permissions.IsAuthenticated] # only authorized users can edit
 

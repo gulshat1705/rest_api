@@ -1,5 +1,6 @@
 from os import write
 from django.db import models
+from django.db.models import fields
 from rest_framework import serializers
 from .models import UserProfile
 
@@ -37,3 +38,11 @@ class GetUserProfilePublicSerializer(serializers.ModelSerializer):
               "user_permissions"
               )
         
+
+class UserByFollowerSerializer(serializers.ModelSerializer):
+    """ Serializer for subscriber """
+
+    avatar = serializers.ImageField(read_only=True)
+    class Meta:
+        model = UserProfile
+        fields = ('id', 'username', 'avatar')
