@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'wall',
     'comments',
     'followers',
+    'feed',
 
 ]
 

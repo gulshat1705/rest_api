@@ -23,5 +23,6 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 
     path('wall/', include('wall.urls')),
+    path('follower/', include('followers.urls')),
     path('', include('profiles.urls')),
 ]
