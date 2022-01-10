@@ -20,6 +20,7 @@ python-memcached = "*"
 pillow = "*"
 djoser = "*"
 django-mptt = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 

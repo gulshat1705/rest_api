@@ -1,15 +1,18 @@
-from rest_framework.settings import import_from_string
 from wall.models import Post
-from followers.models import Follower
+from django.conf import settings
+
+class Feed:
+    """ Service feeds  """
+
+    def get_post_list(self, user: settings.AUTH_USER_MODEL): #model post has field 'user' __и у него есть некий связь с owner находиться в модели Follower(related_name) и там есть subscriber
+        return Post.objects.filter(user__owner__subscriber=user).order_by('-create_date')\
+            .select_related('user').prefetch_related('comments')
+
+        # posts = Post.objects.filter(user__owner__subscriber_id=1).order_by('-create_date')\
+        #     .select_related('user').prefetch_related('comments') #для теста
+        # 
+    def get_single_list(self, pk: int): #
+        return Post.objects.get(id=pk).order_by('-create_date')
 
 
-def feed(user):
-    #1
-    news = []
-    subscribe = Follower.objects.filter(subscriber=user)
-    for sub in subscribe:
-        news.append(Post.objects.filter(user=sub.user, create_date__hour=1).order_by('-create_date'))
-
-
-    #2
-    
+feed_service = Feed()        

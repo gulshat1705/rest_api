@@ -58,6 +58,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -219,4 +220,19 @@ CORS_ORIGIN_WHITELIST = [
     "http://127.0.0.1:8000",
     "http://127.0.0.1:1313",
     "http://localhost:1313",
+    "http://localhost:4200",
+    "http://localhost",
 ]
+
+
+#.env.devs
+EMAIL_USE_TLS =True
+EMAIL_HOST ='smtp.gmail.com'
+EMAIL_HOST_USER = 'arkytbekovagulshat@gmail.com'
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT =587
+# EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS", None)
+# EMAIL_HOST = os.environ.get("EMAIL_HOST", None)
+# EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", None)
+# EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", None)
+# EMAIL_PORT = os.environ.get("EMAIL_PORT", None)
