@@ -1,5 +1,3 @@
-from django.db import models
-from django.db.models import fields
 from rest_framework import serializers
 from base.serializers import RecursiveSerializer, FilterCommentListSerializer
 # from wall.views import EntryGroupVie

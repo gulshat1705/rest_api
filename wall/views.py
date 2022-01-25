@@ -1,5 +1,4 @@
-from rest_framework import permissions, generics, serializers
-
+from rest_framework import permissions, generics
 from base.classes import CreateRetrieveUpdateDestroy, CreateUpdateDestroy
 from base.permissions import IsAuthor
 from .models import Post, Comment
@@ -14,7 +13,6 @@ class PostListView(generics.ListAPIView):
         return Post.objects.filter(
             user_id=self.kwargs.get('pk').select_related('user').prefetch_related('comments'))
 
-
 class PostView(CreateRetrieveUpdateDestroy):
     """ CRUD posts """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -28,11 +26,9 @@ class PostView(CreateRetrieveUpdateDestroy):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-
-
 class CommentsView(CreateUpdateDestroy):
     """ Editing comments to entries """ 
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Comment.objects.all()
     serializer_classes = CreateCommentSerializer
     permission_classes_by_action = {'update': [IsAuthor],

@@ -1,5 +1,4 @@
-from rest_framework import generics, permissions, mixins, decorators, viewsets
-
+from rest_framework import permissions, mixins, viewsets
 
 class MixedPermission:
     """ Mixin permissions for action """
