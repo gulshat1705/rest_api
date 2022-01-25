@@ -1,6 +1,4 @@
 from os import write
-from django.db import models
-from django.db.models import fields
 from rest_framework import serializers
 from .models import UserProfile
 
@@ -8,17 +6,23 @@ from .models import UserProfile
 class GetUserProfileSerializer(serializers.ModelSerializer):
     """Info about user"""
 
-    avatar = serializers.ImageField(write_only=True)
+    # avatar = serializers.ImageField(write_only=True)
     class Meta:
         model = UserProfile
         exclude = (
+            "id",
             "password", 
+            "email",
+            "avatar",
+            "first_login",
             "last_login",
-             "is_active", 
-             "is_staff", 
-             "is_superuser",
-              "groups",
-               "user_permissions"
+            "is_active", 
+            "is_staff", 
+            "is_superuser",
+            "groups",
+            "user_permissions",
+            "date_joined",
+
                )
 
 
